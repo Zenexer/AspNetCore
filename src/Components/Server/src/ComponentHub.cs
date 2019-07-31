@@ -156,7 +156,7 @@ namespace Microsoft.AspNetCore.Components.Server
                 CircuitHost.UnhandledException += CircuitHost_UnhandledException;
 
                 circuitHost.SetCircuitUser(Context.User);
-                circuitHost.SendPendingBatches();
+                circuitHost.ResumeCircuit();
                 return true;
             }
 
