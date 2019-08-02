@@ -258,10 +258,10 @@ namespace Microsoft.AspNetCore.Components.Server.Circuits
         {
             Log.ConnectionUp(_logger, Circuit.Id, Client.ConnectionId);
 
+            await HandlerLock.WaitAsync(cancellationToken);
+
             try
             {
-                await HandlerLock.WaitAsync(cancellationToken);
-
                 for (var i = 0; i < _circuitHandlers.Length; i++)
                 {
                     var circuitHandler = _circuitHandlers[i];
@@ -285,10 +285,10 @@ namespace Microsoft.AspNetCore.Components.Server.Circuits
         {
             Log.ConnectionDown(_logger, Circuit.Id, Client.ConnectionId);
 
+            await HandlerLock.WaitAsync(cancellationToken);
+
             try
             {
-                await HandlerLock.WaitAsync(cancellationToken);
-
                 for (var i = 0; i < _circuitHandlers.Length; i++)
                 {
                     var circuitHandler = _circuitHandlers[i];
